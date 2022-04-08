@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_firebase/screen/all_category.dart';
+import 'package:flutter_and_firebase/screen/cart_screen.dart';
 import 'package:flutter_and_firebase/screen/product_detail.dart';
 import 'package:flutter_and_firebase/services/api_service.dart';
 
@@ -27,6 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ));
             },
             icon: const Icon(Icons.view_list),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CartScreen(),
+              ));
+            },
+            icon: const Icon(Icons.shopping_cart),
           ),
         ],
       ),

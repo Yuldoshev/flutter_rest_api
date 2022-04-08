@@ -43,4 +43,14 @@ class ApiServise {
 
     return json.decode(response.body);
   }
+
+  Future getCart(String userId) async {
+    final fetchCartProductUrl = "https://fakestoreapi.com/carts/$userId";
+    final response = await http.get(Uri.parse(fetchCartProductUrl));
+
+    print(response.statusCode);
+    print(response.body);
+
+    return json.decode(response.body);
+  }
 }
