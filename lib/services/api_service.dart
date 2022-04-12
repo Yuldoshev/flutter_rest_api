@@ -53,4 +53,45 @@ class ApiServise {
 
     return json.decode(response.body);
   }
+
+  Future loginUser(String username, String password) async {
+    final loginUrl = Uri.parse("https://fakestoreapi.com/auth/login");
+    final response = await http.post(loginUrl, body: {
+      "username": username,
+      "password": password,
+    });
+
+    print(response.statusCode);
+    print(response.body);
+
+    return json.decode(response.body);
+  }
+
+  //Post Request
+  Future updateCart(int userId, int productId) async {
+    final updateCardUrl = Uri.parse("https://fakestoreapi.com/carts/$userId");
+    final response = await http.put(updateCardUrl, body: {
+      "userId": "${userId}",
+      "date": DateTime.now().toString(),
+      "products": [
+        {
+          "productId": "$productId",
+          "quantity": "1",
+        }
+      ]
+    });
+    print(response.statusCode);
+    print(response.body);
+    return json.decode(response.body);
+  }
+
+  //Delete reques
+
+  Future deleteCart(String userId) async {
+    final deleteCart = Uri.parse("https://fakestoreapi.com/carts/$userId");
+    final response = await http.delete(deleteCart);
+    print(response.statusCode);
+    print(response.body);
+    return json.decode(response.body);
+  }
 }
