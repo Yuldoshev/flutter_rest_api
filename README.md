@@ -1,4 +1,4 @@
-# flutter_and_firebase
+# flutter_and_restapi
 
 A new Flutter project.
 
