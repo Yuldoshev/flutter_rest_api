@@ -12,7 +12,7 @@ class CategoryProductScreen extends StatelessWidget {
         title: Text(
           categoryName!.toUpperCase(),
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.orange,
         centerTitle: true,
       ),
       body: FutureBuilder(

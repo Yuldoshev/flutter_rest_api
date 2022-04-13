@@ -94,4 +94,30 @@ class ApiServise {
     print(response.body);
     return json.decode(response.body);
   }
+
+  Future userAuthentication(String usernmae, String password) async {
+    final authUrl = Uri.parse("https://api.somewhere.io");
+    final response = await http.post(authUrl, body: {
+      'username': usernmae,
+      'password': password,
+    });
+
+    print(response.statusCode);
+    print(response.body);
+  }
+
+  Future userAuthorization(String usernmae, String password) async {
+    final authUrl = Uri.parse("https://api.somewhere.io");
+    final basicAuth =
+        "Basic " + base64Encode(utf8.encode("$usernmae:$password"));
+
+    final accessToken = "Access token value";
+    final response = await http.get(authUrl, headers: {
+      "Content-Type": "application/json",
+      "authorization": "Bearer $accessToken",
+    });
+
+    print(response.statusCode);
+    print(response.body);
+  }
 }

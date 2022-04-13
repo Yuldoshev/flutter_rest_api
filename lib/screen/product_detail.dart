@@ -2,27 +2,29 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_and_firebase/services/api_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductDetail extends StatelessWidget {
-  const ProductDetail({Key? key, this.id}) : super(key: key);
+  ProductDetail({Key? key, required this.id}) : super(key: key);
 
-  final int? id;
+  late int id;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(""),
+        backgroundColor: Colors.orange,
+        shadowColor: Colors.deepOrange,
+        elevation: 10,
       ),
       body: FutureBuilder(
-        future: ApiServise().getSingleProduct(id!),
+        future: ApiServise().getSingleProduct(id),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return SingleChildScrollView(
               child: Container(
                 margin: const EdgeInsets.all(20),
                 child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
@@ -32,6 +34,10 @@ class ProductDetail extends StatelessWidget {
                       snapshot.data['image'],
                       height: 200,
                       width: double.infinity,
+                      colorBlendMode: BlendMode.hardLight,
+                      gaplessPlayback: true,
+                      scale: 3.0,
+                      isAntiAlias: true,
                     ),
                     const SizedBox(
                       height: 10,
@@ -39,33 +45,36 @@ class ProductDetail extends StatelessWidget {
                     Center(
                       child: Text(
                         "Price - \$" + snapshot.data['price'].toString(),
-                        style: const TextStyle(
+                        style: GoogleFonts.roboto(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       snapshot.data['title'],
-                      style: TextStyle(fontSize: 25),
+                      style: GoogleFonts.roboto(fontSize: 25),
                     ),
                     Chip(
                       label: Text(
                         snapshot.data['category'].toString(),
-                        style: TextStyle(
+                        style: GoogleFonts.roboto(
                           fontSize: 15,
                           color: Colors.white,
                         ),
                       ),
-                      backgroundColor: Colors.blueGrey,
+                      backgroundColor: Colors.orangeAccent,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Text(snapshot.data['description']),
+                    Text(
+                      snapshot.data['description'],
+                      style: GoogleFonts.roboto(fontSize: 16),
+                    ),
                   ],
                 ),
               ),
@@ -78,14 +87,14 @@ class ProductDetail extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await ApiServise().updateCart(1, id!);
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("Product added to cart")));
+          await ApiServise().updateCart(1, id);
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Product added to cart")));
         },
-        child: Icon(
+        child: const Icon(
           Icons.add_shopping_cart_outlined,
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.orange,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

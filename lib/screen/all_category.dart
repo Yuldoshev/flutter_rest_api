@@ -10,7 +10,7 @@ class AllCategory extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Categories"),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.orange,
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -28,12 +28,14 @@ class AllCategory extends StatelessWidget {
                     ));
                   },
                   child: Card(
-                    elevation: 2,
+                    elevation: 10,
+                    borderOnForeground: true,
+                    shadowColor: Colors.orange[50],
                     margin: const EdgeInsets.all(15),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                     child: Container(
-                      padding: EdgeInsets.all(40),
+                      padding: const EdgeInsets.all(40),
                       child: Center(
                         child: Text(
                           snapshot.data[index].toString().toUpperCase(),

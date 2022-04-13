@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Flutter Shop"),
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.orangeAccent,
       ),
       body: Container(
         margin: const EdgeInsets.all(20),
@@ -24,12 +24,22 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Center(
+              child: ColorFiltered(
+                colorFilter:
+                    const ColorFilter.mode(Colors.orange, BlendMode.color),
+                child: Image.asset("assets/images.jpeg"),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             TextField(
               controller: nameController,
               decoration: const InputDecoration(
                   labelText: "Username", border: OutlineInputBorder()),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             TextField(
@@ -44,6 +54,10 @@ class LoginScreen extends StatelessWidget {
               height: 50,
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.orange[300],
+                    textStyle:
+                        TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
                 onPressed: () async {
                   final getToken = await ApiServise()
                       .loginUser(nameController.text, passwordController.text);

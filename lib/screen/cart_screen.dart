@@ -10,7 +10,7 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Your Cart"),
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.orangeAccent,
       ),
       body: FutureBuilder(
         future: ApiServise().getCart('1'),
@@ -59,11 +59,11 @@ class CartScreen extends StatelessWidget {
       bottomNavigationBar: Container(
         height: 60,
         width: double.infinity,
-        color: Colors.green,
+        color: Colors.orange,
         child: const Center(
           child: Text(
             "Order Now",
-            style: TextStyle(color: Colors.white, fontSize: 30),
+            style: TextStyle(color: Colors.white, fontSize: 25),
           ),
         ),
       ),
