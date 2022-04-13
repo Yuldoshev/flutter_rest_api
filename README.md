@@ -1,6 +1,6 @@
 # flutter_restapi
 
-A new Flutter project.
+A new Flutter project. with https://fakestoreapi.com/ 
 
 <img src="https://user-images.githubusercontent.com/15108480/163139667-8c7bf003-002c-41a7-9205-b1db3c862887.jpg" width="188"> |
 <img src="https://user-images.githubusercontent.com/15108480/163139717-d6fee566-b4a7-4b41-8c0e-08d0d03824ed.jpg" width="188">
