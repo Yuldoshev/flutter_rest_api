@@ -1,4 +1,4 @@
-# flutter_and_restapi
+# flutter_restapi
 
 A new Flutter project.
 
