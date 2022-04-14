@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_and_firebase/model/model.dart';
 import 'package:flutter_and_firebase/screen/all_category.dart';
 import 'package:flutter_and_firebase/screen/cart_screen.dart';
 import 'package:flutter_and_firebase/screen/product_detail.dart';
@@ -48,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
+                    Product product = snapshot.data[index];
                     return Card(
                       elevation: 5.0,
                       shadowColor: Colors.orange[200],
@@ -63,22 +65,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  ProductDetail(id: snapshot.data[index]['id']),
+                                  ProductDetail(id: product.id),
                             ));
                           },
                           title: Text(
-                            snapshot.data[index]['title'],
+                            product.title,
                             style: GoogleFonts.roboto(fontSize: 14),
                           ),
                           leading: Image.network(
-                            snapshot.data[index]['image'],
+                            product.image,
                             height: 50,
                             width: 30,
                             colorBlendMode: BlendMode.softLight,
                           ),
                           subtitle: Text(
-                            "Price - \$" +
-                                snapshot.data[index]['price'].toString(),
+                            "Price - \$" + product.price.toString(),
                             style: GoogleFonts.roboto(),
                           ),
                         ),

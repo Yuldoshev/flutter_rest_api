@@ -1,16 +1,21 @@
 import 'dart:convert';
 
+import 'package:flutter_and_firebase/model/model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServise {
-  Future getAllPosts() async {
+  Future<List<Product>> getAllPosts() async {
     final allProductsUrl = "https://fakestoreapi.com/products";
     final response = await http.get(Uri.parse(allProductsUrl));
-
+    List<Product> list = [];
+    List body = json.decode(response.body);
+    body.forEach((product) {
+      list.add(Product.fromJson(product));
+    });
     print(response.statusCode);
     print(response.body);
 
-    return json.decode(response.body);
+    return list;
   }
 
   Future getSingleProduct(int id) async {
